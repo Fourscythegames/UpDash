@@ -29,9 +29,21 @@ public class SwipeDetection : MonoBehaviour
             currentPosition = Input.GetTouch(0).position;
             Vector2 Distance = currentPosition - startTouchPosition;
             if( !stopTouch){
-                print()           
+                print(Vector2.Distance(currentPosition, startTouchPosition));    
+                stopTouch = true;       
             }
         }
+
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        {
+            stopTouch = false;
+            Vector2 Distance = endTouchPosition - startTouchPosition;
+            if(Mathf.Abs(Distance.x) < tapRange && Mathf.Abs(Distance.y) < tapRange)
+            {
+                print("Tap");
+            }
+        }
+
         
     }
 
