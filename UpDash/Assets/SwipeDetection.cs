@@ -12,6 +12,9 @@ public class SwipeDetection : MonoBehaviour
     private bool stopTouch = false;
     public float swipeRange;
     public float tapRange;
+
+    public bool startDash = false;
+    public Vector2 dirDash;
     
     void Update()
     {
@@ -29,16 +32,27 @@ public class SwipeDetection : MonoBehaviour
             currentPosition = Input.GetTouch(0).position;
             Vector2 Distance = currentPosition - startTouchPosition;
             if( !stopTouch){
-                print(Vector2.Distance(currentPosition, startTouchPosition));    
-                stopTouch = true;       
+                
+                if(Vector2.Distance(currentPosition, startTouchPosition) > swipeRange){
+                    startDash = true;
+                    print("SWIPE");
+                    print((currentPosition - startTouchPosition).normalized);   
+                    dirDash = (currentPosition - startTouchPosition).normalized; 
+                    stopTouch = true;
+                } 
+                
             }
+            // if(stopTouch == true && startDash == true){
+            //     startDash = false;
+            // }
         }
 
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
             stopTouch = false;
+            startDash = false;
             Vector2 Distance = endTouchPosition - startTouchPosition;
-            if(Mathf.Abs(Distance.x) < tapRange && Mathf.Abs(Distance.y) < tapRange)
+            if(Vector2.Distance(currentPosition, startTouchPosition) < tapRange)
             {
                 print("Tap");
             }
