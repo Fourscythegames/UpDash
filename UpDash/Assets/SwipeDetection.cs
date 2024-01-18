@@ -22,7 +22,7 @@ public class SwipeDetection : MonoBehaviour
     }
     public void Swipe(){
 
-        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began )
         {
             startTouchPosition = Input.GetTouch(0).position;
         }
@@ -31,6 +31,9 @@ public class SwipeDetection : MonoBehaviour
         {
             currentPosition = Input.GetTouch(0).position;
             Vector2 Distance = currentPosition - startTouchPosition;
+            if(stopTouch == true && startDash == true){
+                startDash = false;
+            }
             if( !stopTouch){
                 
                 if(Vector2.Distance(currentPosition, startTouchPosition) > swipeRange){
@@ -42,9 +45,7 @@ public class SwipeDetection : MonoBehaviour
                 } 
                 
             }
-            // if(stopTouch == true && startDash == true){
-            //     startDash = false;
-            // }
+            
         }
 
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)

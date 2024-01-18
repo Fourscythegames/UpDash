@@ -30,7 +30,7 @@ public class DashAbility : MonoBehaviour {
 			if(dashTimer >= maxDash)
 			{
 				dashTimer = maxDash;
-				this.GetComponent<Rigidbody2D>().velocity = savedVelocity;
+				//this.GetComponent<Rigidbody2D>().velocity = savedVelocity;
 				dashState = DashState.Cooldown;
 			}
 			break;
