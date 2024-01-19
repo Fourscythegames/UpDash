@@ -9,9 +9,13 @@ public class DashAbility : MonoBehaviour {
 	public float dashTimer;
 	public float maxDash = 20f;
     public float DashPower = 5f;
+	private float oldGravity;
 
 	public Vector2 savedVelocity;
-	
+	private void Start()
+	{
+		oldGravity = this.GetComponent<Rigidbody2D>().gravityScale;
+	}
 	void Update () 
 	{
 		switch (dashState) 
@@ -22,6 +26,7 @@ public class DashAbility : MonoBehaviour {
 			{
 				savedVelocity = this.GetComponent<Rigidbody2D>().velocity;
 				this.GetComponent<Rigidbody2D>().velocity =  swipeDetection.dirDash * DashPower;
+				this.GetComponent<Rigidbody2D>().gravityScale = 0f;
 				dashState = DashState.Dashing;
 			}
 			break;
@@ -40,6 +45,7 @@ public class DashAbility : MonoBehaviour {
 			{
 				dashTimer = 0;
 				dashState = DashState.Ready;
+				this.GetComponent<Rigidbody2D>().gravityScale = oldGravity;
 			} 
 			break;
 		}
