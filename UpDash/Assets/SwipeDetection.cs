@@ -15,6 +15,7 @@ public class SwipeDetection : MonoBehaviour
 
     public bool startDash = false;
     public Vector2 dirDash;
+    public float outPutDirection;
     
     void Update()
     {
@@ -41,7 +42,10 @@ public class SwipeDetection : MonoBehaviour
                     print("SWIPE");
                     print((currentPosition - startTouchPosition).normalized);   
                     dirDash = (currentPosition - startTouchPosition).normalized; 
-                    var angleInput = Mathf.Atan2(dirDash.x, dirDash.y) * Mathf.Rad2Deg; //FInd the better version of degrees that does have negative and use that
+                    var angleInput = Mathf.Atan2(dirDash.y, dirDash.x) * Mathf.Rad2Deg; //FInd the better version of degrees that does have negative and use that
+                    if(angleInput < 0){
+                        angleInput += 360;
+                    }
                     print(angleInput);
                     stopTouch = true;
                     Check8Primary(angleInput);
@@ -65,21 +69,23 @@ public class SwipeDetection : MonoBehaviour
         
     }
     
-    int[] primeAngles = new int[]{0, 45, 90, -180, -90, -45};
+    int[] primeAngles = new int[]{0, 45, 90, 135, 180, 225, 270, 315, 360};
     private void Check8Primary(float angleIN){
         float closestValue = 10000;
         int closestIndex = 0;
         for (int i = 0; i < primeAngles.Length; i++) {
             var angleOut = angleIN - primeAngles[i];
-            print(angleOut+ "    --- " + i + "    -- " + primeAngles[i]);
-            if(angleOut < closestValue){
+            //print(angleOut+ "    --- " + i + "    -- " + primeAngles[i]);
+            if(Mathf.Abs(angleOut) < closestValue){
                 closestValue = angleOut;
                 closestIndex = i;
             }
             
             
         }
-        print(primeAngles[closestIndex]);
+        //print(closestValue + "   idaj");
+        //print(primeAngles[closestIndex]);
+        outPutDirection = primeAngles[closestIndex];
         
 
     }
