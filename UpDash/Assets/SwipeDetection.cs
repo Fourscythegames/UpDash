@@ -38,11 +38,11 @@ public class SwipeDetection : MonoBehaviour
                 
                 if(Vector2.Distance(currentPosition, startTouchPosition) > swipeRange){
                     startDash = true;
-                    print("SWIPE");
-                    print((currentPosition - startTouchPosition).normalized);   
+                    //print("SWIPE");
+                    //print((currentPosition - startTouchPosition).normalized);   
                     dirDash = (currentPosition - startTouchPosition).normalized; 
                     var angleInput = Mathf.Atan2(dirDash.x, dirDash.y) * Mathf.Rad2Deg; //FInd the better version of degrees that does have negative and use that
-                    print(angleInput);
+                    //print(angleInput);
                     stopTouch = true;
                     Check8Primary(angleInput);
                 } 
@@ -71,7 +71,7 @@ public class SwipeDetection : MonoBehaviour
         int closestIndex = 0;
         for (int i = 0; i < primeAngles.Length; i++) {
             var angleOut = angleIN - primeAngles[i];
-            print(angleOut+ "    --- " + i + "    -- " + primeAngles[i]);
+            //print(angleOut+ "    --- " + i + "    -- " + primeAngles[i]);
             if(angleOut < closestValue){
                 closestValue = angleOut;
                 closestIndex = i;
@@ -79,7 +79,7 @@ public class SwipeDetection : MonoBehaviour
             
             
         }
-        print(primeAngles[closestIndex]);
+        //print(primeAngles[closestIndex]);
         
 
     }
