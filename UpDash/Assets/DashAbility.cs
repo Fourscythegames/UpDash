@@ -10,7 +10,6 @@ public class DashAbility : MonoBehaviour {
 	public float maxDash = 20f;
     public float DashPower = 5f;
 	private float oldGravity;
-	private Vector2 dashDirection;
 
 	public Vector2 savedVelocity;
 	private void Start()
@@ -26,32 +25,7 @@ public class DashAbility : MonoBehaviour {
 			if(isDashKeyDown)
 			{
 				savedVelocity = this.GetComponent<Rigidbody2D>().velocity;
-				if(swipeDetection.outPutDirection == 0 || swipeDetection.outPutDirection == 360){
-					dashDirection = new Vector2(1f,0f);
-				}
-				if(swipeDetection.outPutDirection == 45){
-					dashDirection = new Vector2(0.707106f,0.707106f);
-				}
-				if(swipeDetection.outPutDirection == 90){
-					dashDirection = new Vector2(0f,1f);
-				}
-				if(swipeDetection.outPutDirection == 135){
-					dashDirection = new Vector2(-0.707106f,0.707106f);
-				}
-				if(swipeDetection.outPutDirection == 180){
-					dashDirection = new Vector2(-1f,0f);
-				}
-				if(swipeDetection.outPutDirection == 225){
-					dashDirection = new Vector2(-0.707106f,-0.707106f);
-				}
-				if(swipeDetection.outPutDirection == 270){
-					dashDirection = new Vector2(0f,-1f);
-				}
-				if(swipeDetection.outPutDirection == 315){
-					dashDirection = new Vector2(0.707106f,-0.707106f);
-				}
-				
-				this.GetComponent<Rigidbody2D>().velocity =  dashDirection * DashPower;
+				this.GetComponent<Rigidbody2D>().velocity =  swipeDetection.dirDash * DashPower;
 				this.GetComponent<Rigidbody2D>().gravityScale = 0f;
 				dashState = DashState.Dashing;
 			}
