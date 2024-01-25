@@ -10,6 +10,7 @@ public class DashAbility : MonoBehaviour {
 	public float maxDash = 20f;
     public float DashPower = 5f;
 	private float oldGravity;
+	public GameObject trail;
 
 	public Vector2 savedVelocity;
 	private void Start()
@@ -28,6 +29,7 @@ public class DashAbility : MonoBehaviour {
 				this.GetComponent<Rigidbody2D>().velocity =  swipeDetection.dirDash * DashPower;
 				this.GetComponent<Rigidbody2D>().gravityScale = 0f;
 				dashState = DashState.Dashing;
+				//trail.SetActive(true);
 			}
 			break;
 		case DashState.Dashing:
@@ -37,6 +39,7 @@ public class DashAbility : MonoBehaviour {
 				dashTimer = maxDash;
 				//this.GetComponent<Rigidbody2D>().velocity = savedVelocity;
 				dashState = DashState.Cooldown;
+				
 			}
 			break;
 		case DashState.Cooldown:
@@ -46,6 +49,7 @@ public class DashAbility : MonoBehaviour {
 				dashTimer = 0;
 				dashState = DashState.Ready;
 				this.GetComponent<Rigidbody2D>().gravityScale = oldGravity;
+				//trail.SetActive(false);
 			} 
 			break;
 		}
