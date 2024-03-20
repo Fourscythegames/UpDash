@@ -12,10 +12,15 @@ public class DashAbility : MonoBehaviour {
 	private float oldGravity;
 	public GameObject trail;
 
+	
+
+
 	public Vector2 savedVelocity;
 	private void Start()
 	{
 		oldGravity = this.GetComponent<Rigidbody2D>().gravityScale;
+
+		
 	}
 	void Update () 
 	{
@@ -23,7 +28,7 @@ public class DashAbility : MonoBehaviour {
 		{
 		case DashState.Ready:
 			var isDashKeyDown = swipeDetection.startDash;
-			if(isDashKeyDown)
+			if(isDashKeyDown )
 			{
 				savedVelocity = this.GetComponent<Rigidbody2D>().velocity;
 				this.GetComponent<Rigidbody2D>().velocity =  swipeDetection.dirDash * DashPower;

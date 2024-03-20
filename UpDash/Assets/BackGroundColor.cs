@@ -27,19 +27,22 @@ public class BackGroundColor : MonoBehaviour
         //print(difference);
         //print(lastPosDif);
         colorIndexH = colorIndexH + lastPosDif;
-        if(colorIndexH >= 359){
+        //print(colorIndexH);
+        if(colorIndexH >= 360){
             colorIndexH = 0;
             totalCycles += 1;
-        }else if(colorIndexH <=0 ){
+        }else if(colorIndexH < 0 ){
             colorIndexH = 360;
             totalCycles -= 1;
         }
 
-        print(totalCycles);
+        ///print(totalCycles);
         colorIndexOutH = colorIndexH / 360;
         //print(colorIndexOutH);
         colorIndexOutS = colorIndexS / 100;
-        colorIndexOutV = (colorIndexV - (15*totalCycles)) / 100;
+        //colorIndexOutV = (colorIndexV - (15*totalCycles)) / 100;
+        colorIndexOutV = (colorIndexV - (colorIndexH / 360 )) / 100;
+        //print((100 / 360 ) * colorIndexH + "ijadoh");
         bgImage.material.color =  UnityEngine.Color.HSVToRGB(colorIndexOutH,colorIndexOutS,colorIndexOutV);
         
     }

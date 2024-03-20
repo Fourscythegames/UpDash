@@ -13,13 +13,23 @@ public class SwipeDetection : MonoBehaviour
     public float swipeRange;
     public float tapRange;
 
+    public bool holding;
+
     public bool startDash = false;
     public Vector2 dirDash;
     
+    private LivePlayerStats LPS;
+    
+    void Start()
+    {
+        LPS = this.GetComponent<LivePlayerStats>();
+    }
     void Update()
     {
         Swipe();
     }
+
+
     public void Swipe(){
 
         if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began )
@@ -36,16 +46,22 @@ public class SwipeDetection : MonoBehaviour
             }
             if( !stopTouch){
                 
-                if(Vector2.Distance(currentPosition, startTouchPosition) > swipeRange){
+                if(Vector2.Distance(currentPosition, startTouchPosition) > swipeRange && LPS.dashCount - 1 >= 0){
                     startDash = true;
+                    holding = false;
+                    LPS.dashCount = LPS.dashCount - 1;
+                    LPS.dashing = true;
                     //print("SWIPE");
                     //print((currentPosition - startTouchPosition).normalized);   
                     dirDash = (currentPosition - startTouchPosition).normalized; 
                     var angleInput = Mathf.Atan2(dirDash.x, dirDash.y) * Mathf.Rad2Deg; //FInd the better version of degrees that does have negative and use that
                     //print(angleInput);
                     stopTouch = true;
-                    Check8Primary(angleInput);
-                } 
+                    
+                } else if(Vector2.Distance(currentPosition, startTouchPosition) < swipeRange) {
+                    //print("Holding");
+                    holding = true;
+                }
                 
             }
             
@@ -55,6 +71,8 @@ public class SwipeDetection : MonoBehaviour
         {
             stopTouch = false;
             startDash = false;
+            holding = false;
+            LPS.dashing = false;
             Vector2 Distance = endTouchPosition - startTouchPosition;
             if(Vector2.Distance(currentPosition, startTouchPosition) < tapRange)
             {
@@ -65,24 +83,7 @@ public class SwipeDetection : MonoBehaviour
         
     }
     
-    int[] primeAngles = new int[]{0, 45, 90, -180, -90, -45};
-    private void Check8Primary(float angleIN){
-        float closestValue = 10000;
-        int closestIndex = 0;
-        for (int i = 0; i < primeAngles.Length; i++) {
-            var angleOut = angleIN - primeAngles[i];
-            //print(angleOut+ "    --- " + i + "    -- " + primeAngles[i]);
-            if(angleOut < closestValue){
-                closestValue = angleOut;
-                closestIndex = i;
-            }
-            
-            
-        }
-        //print(primeAngles[closestIndex]);
-        
-
-    }
+    
 
 }
 
