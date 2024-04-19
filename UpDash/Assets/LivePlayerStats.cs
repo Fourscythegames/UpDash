@@ -11,6 +11,7 @@ public class LivePlayerStats : MonoBehaviour
     public int dashCount;
     public bool dashing;
     public bool dead;
+    public GameObject playerSpawnPoint;
 
     [Space(5)]
     [Header("Static Stats")]
@@ -18,8 +19,15 @@ public class LivePlayerStats : MonoBehaviour
     public int maxDashCount;
 
     
+    // void Awake()
+    // {
+    //     if(playerSpawnPoint == ){
+    //         playerSpawnPoint = 
+    //     }
+    // }
     void Start()
     {
+        
         livePlayerStats = this;
     }
 }

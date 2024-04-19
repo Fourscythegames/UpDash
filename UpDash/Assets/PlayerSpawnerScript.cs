@@ -15,14 +15,14 @@ public class PlayerSpawnerScript : MonoBehaviour
 
     void Start()
     {
-        player.transform.position = spawnPositions[0].transform.position;
+        player.transform.position = LivePlayerStats.livePlayerStats.playerSpawnPoint.transform.position;
         LPS = this.GetComponent<LivePlayerStats>();
         
     }
 
     
     public void  respawnPlayer(){
-        player.transform.position = spawnPositions[0].transform.position;
+        player.transform.position = LivePlayerStats.livePlayerStats.playerSpawnPoint.transform.position;
         LivePlayerStats.livePlayerStats.dead = false;
         player.SetActive(true);
     }

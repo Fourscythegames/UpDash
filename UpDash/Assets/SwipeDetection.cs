@@ -6,6 +6,7 @@ using UnityEngine;
 public class SwipeDetection : MonoBehaviour
 {
 
+    public static bool canSwipe = true;
     private Vector2 startTouchPosition; 
     private Vector2 currentPosition; 
     private Vector2 endTouchPosition; 
@@ -26,7 +27,10 @@ public class SwipeDetection : MonoBehaviour
     }
     void Update()
     {
-        Swipe();
+        if(canSwipe){
+            Swipe();
+        }
+        
     }
 
 
