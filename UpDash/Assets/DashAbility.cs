@@ -9,19 +9,14 @@ public class DashAbility : MonoBehaviour {
 	public float dashTimer;
 	public float maxDash = 20f;
     public float DashPower = 5f;
-	private float oldGravity;
+	public float oldGravity;
 	public GameObject trail;
+
 
 	
 
 
 	public Vector2 savedVelocity;
-	private void Start()
-	{
-		oldGravity = this.GetComponent<Rigidbody2D>().gravityScale;
-
-		
-	}
 	void Update () 
 	{
 		switch (dashState) 
@@ -48,11 +43,15 @@ public class DashAbility : MonoBehaviour {
 			}
 			break;
 		case DashState.Cooldown:
+			
 			dashTimer -= Time.deltaTime;
 			if(dashTimer <= 0)
 			{
 				dashTimer = 0;
 				dashState = DashState.Ready;
+				
+				
+				//this.GetComponent<Rigidbody2D>().velocity = savedVelocity;
 				this.GetComponent<Rigidbody2D>().gravityScale = oldGravity;
 				//trail.SetActive(false);
 			} 
