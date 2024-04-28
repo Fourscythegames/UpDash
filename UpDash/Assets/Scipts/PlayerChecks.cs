@@ -52,12 +52,16 @@ public class PlayerChecks : MonoBehaviour
     
     bool IsGrounded() {
         Vector2 position = transform.position;
+        position.x = position.x +0.05f;
         Vector2 direction = Vector2.down;
         float distance = 1f;
         
         RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
-        //Debug.DrawRay(position, direction,Color.green, distance);
-        if (hit.collider != null) {
+        Debug.DrawRay(position, direction,Color.green, distance);
+        position.x = position.x -0.1f;
+        RaycastHit2D hit2 = Physics2D.Raycast(position, direction, distance, groundLayer);
+        Debug.DrawRay(position, direction,Color.green, distance);
+        if (hit.collider != null || hit2.collider != null) {
             LPS.dashCount = LPS.maxDashCount;
             
             
@@ -67,17 +71,5 @@ public class PlayerChecks : MonoBehaviour
         return false;
     }  
 
-    // void OnCollisionEnter2D(Collision2D col)
-    // {
-    //     if(col.gameObject.layer == 6){
-    //         wallInRange = true;
-    //         print("GEHEHE");
-    //     }
-    // }     
-    // void OnCollisionExit2D(Collision2D col)
-    // {
-    //     if(col.gameObject.layer == 6){
-    //         wallInRange = false;
-    //     }
-    // }     
+    
 }

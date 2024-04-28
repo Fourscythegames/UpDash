@@ -85,7 +85,7 @@ public class SwipeDetection : MonoBehaviour
                                 print("DOWN");
                             }else{
                                 print("UP");
-                                actions.ToLevels();
+                                //actions.ToLevels();
                             }
                         }
                     }
@@ -114,6 +114,8 @@ public class SwipeDetection : MonoBehaviour
             if(Vector2.Distance(currentPosition, startTouchPosition) < tapRange)
             {
                 print("Tap");
+                
+                
             }
         }
 
