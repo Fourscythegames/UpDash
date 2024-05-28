@@ -6,10 +6,12 @@ using UnityEngine;
 public class SwipeDetection : MonoBehaviour
 {
     public static bool canSwipe = true;
-    private Vector2 startTouchPosition; 
-    private Vector2 currentPosition; 
-    private Vector2 endTouchPosition; 
+    private Vector3 startTouchPosition; 
+    private Vector3 currentPosition; 
+    private Vector3 endTouchPosition; 
     private bool stopTouch = false;
+    public float swipeRangeNormal;
+    public float swipeRangeWall;
     public float swipeRange;
     public float tapRange;
 
@@ -25,22 +27,42 @@ public class SwipeDetection : MonoBehaviour
     public bool canSwipe2 = true;
 
     public ButtonActions actions;
+    public GameObject towerFollows;
+
     
     void Start()
     {
         LPS = this.GetComponent<LivePlayerStats>();
+        swipeRange = swipeRangeNormal;
+        
     }
     void Update()
     {
         
-        Swipe();
         
+        if(CameraSwitching.cameraPriorityState == 2){
+            towerFollows.GetComponent<TowerFollowScript>().TowerSwipe();
+        }else{
+            Swipe();
+        }
+        //print(startTouchPosition + "start ");
+        //print(currentPosition + "curre ");
+        var worldPos1 = Camera.main.ScreenToWorldPoint(new Vector3(startTouchPosition.x, startTouchPosition.y, 10f));
+        var woldPos2 = Camera.main.ScreenToWorldPoint(new Vector3(currentPosition.x, currentPosition.y, 10f));
+        //Debug.DrawLine(worldPos1, woldPos2, Color.red);
+        Debug.DrawLine(startTouchPosition, currentPosition, Color.red);
+
+        //print(currentPosition);
+        //towerFollow.transform.position = startTouchPosition + (startTouchPosition - currentPosition);
+        //towerFollow.transform.position = new Vector3(150,towerFollow.transform.position.y,-10);
         
     }
 
 
     public void Swipe(){
+        towerFollows.GetComponent<TowerFollowScript>().once = false;
         
+
         if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began )
         {
             startTouchPosition = Input.GetTouch(0).position;
@@ -121,6 +143,9 @@ public class SwipeDetection : MonoBehaviour
 
         
     }
+    
+
+    
     
     
 

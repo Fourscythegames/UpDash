@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 69df6b772f744b743990f62caf22a2fe
+guid: 4a3c7f27ba5838a4eb04f8312af97ca2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -129,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MenuUI_0
+      name: Select_0
       rect:
         serializedVersion: 2
-        x: 60
-        y: 104
-        width: 442
-        height: 675
+        x: 0
+        y: 7
+        width: 528
+        height: 332
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,71 +143,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30ae51cd6682006408850042f3f06b47
-      internalID: 935357910
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MenuUI_1
-      rect:
-        serializedVersion: 2
-        x: 507
-        y: 101
-        width: 527
-        height: 377
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e0589f70da4c0544388f28ce6ed446c2
-      internalID: -1255067574
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MenuUI_2
-      rect:
-        serializedVersion: 2
-        x: 1032
-        y: 100
-        width: 470
-        height: 686
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 973a0cfbdeb215b43ab3c82dbf3a2e5d
-      internalID: -440604684
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MenuUI_3
-      rect:
-        serializedVersion: 2
-        x: 654
-        y: 539
-        width: 219
-        height: 215
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1e6e0c3086e8f204a923cfaff6584d97
-      internalID: -2098411792
+      spriteID: 3781650bdff051943bfd1d447029db90
+      internalID: 1527494490
       vertices: []
       indices: 
       edges: []
@@ -223,10 +160,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      MenuUI_0: 935357910
-      MenuUI_1: -1255067574
-      MenuUI_2: -440604684
-      MenuUI_3: -2098411792
+      Select_0: 1527494490
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -23,12 +23,15 @@ public class GrabAbility : MonoBehaviour
         touchHolding = swipeDetection.holding;
         
         if((touchHolding && playerChecks.wallInRange)){
+            swipeDetection.swipeRange = swipeDetection.swipeRangeWall;
             //print("GRABBBBB");
             this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
             LPS.dashCount = LPS.maxDashCount;
         }else {
+            swipeDetection.swipeRange = swipeDetection.swipeRangeNormal;
             this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+
 
         }
     }

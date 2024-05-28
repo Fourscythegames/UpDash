@@ -19,6 +19,7 @@ public class DashAbility : MonoBehaviour {
 	public Vector2 savedVelocity;
 	void Update () 
 	{
+		
 		switch (dashState) 
 		{
 		case DashState.Ready:
