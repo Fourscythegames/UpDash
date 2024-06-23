@@ -14,16 +14,13 @@ public class ButtonActions : MonoBehaviour
     private GameObject Obj_Short;
     private Vector2 OnS_Short;
     private Vector2 OffS_Short;
+
+    public GameObject SwipeGuideCanvas;
+    
     
     void Start()
     {
-        var big = 1;
-        for (int i = 0; i < uiScreens[big].uiElementsAttributes.Count; i++)
-        {
-            print(uiScreens[big].uiElementsAttributes.Count);
-            shortHand(i, big);
-            LeanTween.moveLocal(Obj_Short, new Vector3(OnS_Short.x, OnS_Short.y, 0), .55f).setEase(LeanTweenType.easeInOutCubic);
-        }
+        ToGame();
     }
     
     public void ToMenu(){
@@ -47,7 +44,7 @@ public class ButtonActions : MonoBehaviour
             shortHand(i, big);
             LeanTween.moveLocal(Obj_Short, new Vector3(OnS_Short.x, OnS_Short.y, 0), .55f).setEase(LeanTweenType.easeInOutCubic);
         }
-        
+        SwipeGuideCanvas.SetActive(false);
         SwipeDetection.canSwipe = false;
     }
 
@@ -68,6 +65,7 @@ public class ButtonActions : MonoBehaviour
             LeanTween.moveLocal(Obj_Short, new Vector3(OnS_Short.x, OnS_Short.y, 0), .55f).setEase(LeanTweenType.easeInOutCubic);
         }
         SwipeDetection.canSwipe = true;
+        SwipeGuideCanvas.SetActive(true);
     }
 
     public void ToLevels(){
@@ -87,6 +85,7 @@ public class ButtonActions : MonoBehaviour
             shortHand(i, big);
             LeanTween.moveLocal(Obj_Short, new Vector3(OnS_Short.x, OnS_Short.y, 0), .55f).setEase(LeanTweenType.easeInOutCubic);
         }
+        
     }
 
     public void ToGameLevelSpecific(GameObject gameObject){
@@ -112,6 +111,7 @@ public class ButtonActions : MonoBehaviour
             shortHand(i, big);
             LeanTween.moveLocal(Obj_Short, new Vector3(OnS_Short.x, OnS_Short.y, 0), .55f).setEase(LeanTweenType.easeInOutCubic);
         }
+        SwipeGuideCanvas.SetActive(true);
     }
 
 

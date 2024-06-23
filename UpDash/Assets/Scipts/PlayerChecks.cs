@@ -10,6 +10,7 @@ public class PlayerChecks : MonoBehaviour
 
     public bool wallInRange;
     public bool wallAlmostInRange;
+    public bool inAir;
 
     private LivePlayerStats LPS;
 
@@ -25,11 +26,35 @@ public class PlayerChecks : MonoBehaviour
         if(LPS.dashing == false){
             grounded = IsGrounded();
         }
+        inAir = IsinAir();
+
+        //grounded = IsGrounded();
 
         
         wallInRange = IsWall();
         
     }
+
+    bool IsinAir(){
+        Vector2 position = transform.position;
+        position.x = position.x +0.05f;
+        Vector2 direction = Vector2.down;
+        float distance = 1f;
+        
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
+        Debug.DrawRay(position, direction,Color.green, distance);
+        position.x = position.x -0.1f;
+        RaycastHit2D hit2 = Physics2D.Raycast(position, direction, distance, groundLayer);
+        Debug.DrawRay(position, direction,Color.green, distance);
+        if (hit.collider != null || hit2.collider != null) {
+            
+            
+            return false;
+        }
+        
+        return true;
+    }
+    
     bool IsWall(){
         Vector2 position = transform.position;
         Vector2 direction = Vector2.right;

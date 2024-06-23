@@ -29,6 +29,9 @@ public class SwipeDetection : MonoBehaviour
     public ButtonActions actions;
     public GameObject towerFollows;
 
+    public GameObject SwipeGuide;
+    public GameObject SwipeGuideLil;
+
     
     void Start()
     {
@@ -45,17 +48,11 @@ public class SwipeDetection : MonoBehaviour
         }else{
             Swipe();
         }
-        //print(startTouchPosition + "start ");
-        //print(currentPosition + "curre ");
+       
         var worldPos1 = Camera.main.ScreenToWorldPoint(new Vector3(startTouchPosition.x, startTouchPosition.y, 10f));
         var woldPos2 = Camera.main.ScreenToWorldPoint(new Vector3(currentPosition.x, currentPosition.y, 10f));
-        //Debug.DrawLine(worldPos1, woldPos2, Color.red);
         Debug.DrawLine(startTouchPosition, currentPosition, Color.red);
 
-        //print(currentPosition);
-        //towerFollow.transform.position = startTouchPosition + (startTouchPosition - currentPosition);
-        //towerFollow.transform.position = new Vector3(150,towerFollow.transform.position.y,-10);
-        
     }
 
 
@@ -66,11 +63,16 @@ public class SwipeDetection : MonoBehaviour
         if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began )
         {
             startTouchPosition = Input.GetTouch(0).position;
+            SwipeGuide.transform.position = startTouchPosition;
+            SwipeGuideLil.transform.position = startTouchPosition;
+            
         }
         
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
         {
             currentPosition = Input.GetTouch(0).position;
+            SwipeGuideLil.transform.position = currentPosition;
+            
             if(canSwipe){
                 
                 Vector2 Distance = currentPosition - startTouchPosition;
@@ -88,28 +90,13 @@ public class SwipeDetection : MonoBehaviour
                     stopTouch = true;
                     
                     if(canSwipe && canSwipe2){
+                        
                         startDash = true;
                         LPS.dashCount = LPS.dashCount - 1;
                         LPS.dashing = true;
                         dirDash = (currentPosition - startTouchPosition).normalized; 
                         var angleInput = Mathf.Atan2(dirDash.x, dirDash.y) * Mathf.Rad2Deg;
                         canSwipe2 = false;
-                    }else if(!canSwipe){
-                        SwipeDirection = (currentPosition-startTouchPosition).normalized;
-                        if(Mathf.Abs(SwipeDirection.x) > Mathf.Abs(SwipeDirection.y)){
-                            if(SwipeDirection.x <= 0 ){
-                                print("LEFT");
-                            }else{
-                                print("RIGHT");
-                            }
-                        }else{
-                            if(SwipeDirection.y <= 0 ){
-                                print("DOWN");
-                            }else{
-                                print("UP");
-                                //actions.ToLevels();
-                            }
-                        }
                     }
                     
                     
@@ -128,9 +115,9 @@ public class SwipeDetection : MonoBehaviour
             startDash = false;
             canSwipe2 = true;
             holding = false;
-            if(canSwipe){
-                LPS.dashing = false;
-            }
+            
+            LPS.dashing = false;
+            
             
             Vector2 Distance = endTouchPosition - startTouchPosition;
             if(Vector2.Distance(currentPosition, startTouchPosition) < tapRange)
