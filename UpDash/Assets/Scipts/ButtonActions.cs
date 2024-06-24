@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class ButtonActions : MonoBehaviour
 {
-    public GameObject backpanel, levelsPanel, player;
-    //public List<RectTransform> UIElements = new List<RectTransform>();
-    
-    //private List<UIElementAttributes> uiElementsAttributes = new List<UIElementAttributes>();
+    public GameObject player;
 
     public List<UIScreens> uiScreens = new List<UIScreens>();
     

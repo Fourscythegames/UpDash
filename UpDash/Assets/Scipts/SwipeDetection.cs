@@ -44,7 +44,7 @@ public class SwipeDetection : MonoBehaviour
         
         
         if(CameraSwitching.cameraPriorityState == 2){
-            towerFollows.GetComponent<TowerFollowScript>().TowerSwipe();
+            //towerFollows.GetComponent<TowerFollowScript>().TowerSwipe();
         }else{
             Swipe();
         }
@@ -57,7 +57,7 @@ public class SwipeDetection : MonoBehaviour
 
 
     public void Swipe(){
-        towerFollows.GetComponent<TowerFollowScript>().once = false;
+        
         
 
         if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began )
