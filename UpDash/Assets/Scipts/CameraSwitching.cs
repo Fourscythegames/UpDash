@@ -6,7 +6,7 @@ using Cinemachine;
 public class CameraSwitching : MonoBehaviour
 {
     //public static CameraSwitching CameraSwitching Instance { get; set;} 
-    public static int cameraPriorityState = 0;
+    public static int cameraPriorityState = 1;
     [SerializeField]
     private CinemachineVirtualCamera gameCam;
 
@@ -17,6 +17,14 @@ public class CameraSwitching : MonoBehaviour
     private CinemachineVirtualCamera towerCam;
 
     private int camIndex;
+
+    public InGameManager inGameManager;
+    
+
+    private void Start()
+    {
+        SwitchPriority(cameraPriorityState);
+    }
     //0 = game, 1 = menu, 2 = tower 
     
 
@@ -26,6 +34,7 @@ public class CameraSwitching : MonoBehaviour
             menuCam.Priority = 0;
             towerCam.Priority = 0;
             cameraPriorityState = 0;
+            inGameManager.startRepeating();
         }
 
         if(switchVal == 1){

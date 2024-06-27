@@ -17,21 +17,21 @@ public class ButtonActions : MonoBehaviour
     
     void Start()
     {
-        ToGame();
+        ToMenu();
     }
     
     public void ToMenu(){
         var big = 1;
         for (int i = 0; i < uiScreens[big].uiElementsAttributes.Count; i++)
         {
-            print(uiScreens[big].uiElementsAttributes.Count);
+            //print(uiScreens[big].uiElementsAttributes.Count);
             shortHand(i, big);
             LeanTween.moveLocal(Obj_Short, new Vector3(OffS_Short.x, OffS_Short.y, 0), .55f).setEase(LeanTweenType.easeInOutCubic);
         }
         big = 2;
         for (int i = 0; i < uiScreens[big].uiElementsAttributes.Count; i++)
         {
-            print(uiScreens[big].uiElementsAttributes.Count);
+            //print(uiScreens[big].uiElementsAttributes.Count);
             shortHand(i, big);
             LeanTween.moveLocal(Obj_Short, new Vector3(OffS_Short.x, OffS_Short.y, 0), .55f).setEase(LeanTweenType.easeInOutCubic);
         }
@@ -71,14 +71,14 @@ public class ButtonActions : MonoBehaviour
         var big = 0;
         for (int i = 0; i < uiScreens[big].uiElementsAttributes.Count; i++)
         {
-            print(uiScreens[big].uiElementsAttributes.Count);
+            //print(uiScreens[big].uiElementsAttributes.Count);
             shortHand(i, big);
             LeanTween.moveLocal(Obj_Short, new Vector3(OffS_Short.x, OffS_Short.y, 0), .55f).setEase(LeanTweenType.easeInOutCubic);
         }
         big = 2;
         for (int i = 0; i < uiScreens[big].uiElementsAttributes.Count; i++)
         {
-            print(uiScreens[big].uiElementsAttributes.Count);
+            //print(uiScreens[big].uiElementsAttributes.Count);
             shortHand(i, big);
             LeanTween.moveLocal(Obj_Short, new Vector3(OnS_Short.x, OnS_Short.y, 0), .55f).setEase(LeanTweenType.easeInOutCubic);
         }
@@ -97,7 +97,7 @@ public class ButtonActions : MonoBehaviour
         var big = 2;
         for (int i = 0; i < uiScreens[big].uiElementsAttributes.Count; i++)
         {
-            print(uiScreens[big].uiElementsAttributes.Count);
+            //print(uiScreens[big].uiElementsAttributes.Count);
             shortHand(i, big);
             LeanTween.moveLocal(Obj_Short, new Vector3(OffS_Short.x, OffS_Short.y, 0), .55f).setEase(LeanTweenType.easeInOutCubic);
         }
