@@ -17,9 +17,12 @@ public class TransitionManager : MonoBehaviour
         if (LivePlayerStats.livePlayerStats.dead == true && once == false)
         {
             
-            StartCoroutine(TransitionIn());
+            //StartCoroutine(TransitionIn());
             once = true;
         }
+    }
+    public void playerDied(){
+        StartCoroutine(TransitionIn());
     }
     
     

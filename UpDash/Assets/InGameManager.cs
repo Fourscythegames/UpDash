@@ -51,7 +51,9 @@ public class InGameManager : MonoBehaviour
             float val2 = currentHighestVerticalLocation;
             float roundedval2 = Mathf.Round(val2 * 100f) / 100f;
 
-            gameDataManagerScript.UpdateDataSave(roundedval1, player.GetComponent<LivePlayerStats>().playerSpawnPoint, roundedval2);
+
+            gameDataManagerScript.SaveAllData(player, roundedval2);
+            //gameDataManagerScript.UpdateDataSave(roundedval1, roundedval2, player.GetComponent<LivePlayerStats>().playerSpawnPoint, player.GetComponent<LivePlayerStats>().highestSpawnPoint);
 
             // Wait for the specified interval
             yield return new WaitForSeconds(interval);

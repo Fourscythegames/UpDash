@@ -9,6 +9,8 @@ public class GameDataManagerScript : MonoBehaviour
     public SaveDataObject saveDataObject;
     private string path;
 
+    public bool FactoryResetButton;
+    
     //private static GameDataManagerScript instance;
 
     
@@ -17,24 +19,25 @@ public class GameDataManagerScript : MonoBehaviour
     private void Awake()
     {
         SetUpPath();
+        
+        
       
     }
     private void Update() {
-        
+        if(FactoryResetButton == true){
+            FactoryResetButton = false;
+            factoryReset();
+        }
         if(Input.GetKeyDown(KeyCode.S)){ 
                
             //SaveDataObject.saveInfo = SaveDataObject.saveInfo;
             GameData.SaveData(saveDataObject,path,false);
+            
             print("Just Saved");
         }
         if(Input.GetKeyDown(KeyCode.L)){
-            // float d;
-            // GameObject c;
-            // float h;
-
+            
             LoadSavedData();
-            //print(d +"  "+ c);
-            //SaveDataObject = GameData.LoadData(SaveDataObject,path,false) as SaveDataObject;
             print("Fake Load  " + saveDataObject.saveInfo.currentVerticalLoction);
         }
     }
@@ -53,6 +56,13 @@ public class GameDataManagerScript : MonoBehaviour
 
 
     }
+    public void SaveAllData(GameObject player, float highestVerticalLocations){
+        saveDataObject.saveInfo.currentVerticalLoction = player.transform.position.y;
+        saveDataObject.saveInfo.highestVerticalLocation = highestVerticalLocations;
+        saveDataObject.saveInfo.currentCheckPoint = LivePlayerStats.livePlayerStats.playerSpawnPoint;
+        saveDataObject.saveInfo.currentHighestCheckPoint = LivePlayerStats.livePlayerStats.highestSpawnPoint;
+        GameData.SaveData(saveDataObject,path,false);
+    }
     public void SetUpPath(){
         path = Application.persistentDataPath + "/Save.dat";//
         //print(Application.persistentDataPath);
@@ -61,11 +71,28 @@ public class GameDataManagerScript : MonoBehaviour
     [System.Serializable]
     public class SaveDataObject {
         public SaveInfo saveInfo;
+        
+        //public OtherInfo otherInfo;
     }
     [System.Serializable]
     public class SaveInfo {
         public float currentVerticalLoction;
-        public GameObject currentCheckPoint;
         public float highestVerticalLocation;
+        public GameObject currentCheckPoint;
+        public GameObject currentHighestCheckPoint;
+        
+        
     }
+    public void factoryReset(){
+        float cv = 0f;
+        float hvl = 0f;
+        var obj = GameObject.Find("CheckPoint (1)");
+
+        saveDataObject.saveInfo.currentVerticalLoction = cv;
+        saveDataObject.saveInfo.highestVerticalLocation = hvl;
+        saveDataObject.saveInfo.currentCheckPoint = obj;
+        saveDataObject.saveInfo.currentHighestCheckPoint = obj;
+        GameData.SaveData(saveDataObject,path,false);
+    }
+    
 }

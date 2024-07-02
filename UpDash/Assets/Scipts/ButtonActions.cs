@@ -13,6 +13,8 @@ public class ButtonActions : MonoBehaviour
     private Vector2 OffS_Short;
 
     public GameObject SwipeGuideCanvas;
+
+    public UIElementAttributes respawnButton;
     
     
     void Start()
@@ -94,6 +96,7 @@ public class ButtonActions : MonoBehaviour
         LivePlayerStats.livePlayerStats.playerSpawnPoint = gameObject;
         LivePlayerStats.livePlayerStats.dead = true;
         player.SetActive(false);
+        GameObject.Find("Transitions").GetComponent<TransitionManager>().playerDied();
         var big = 2;
         for (int i = 0; i < uiScreens[big].uiElementsAttributes.Count; i++)
         {
@@ -109,6 +112,15 @@ public class ButtonActions : MonoBehaviour
             LeanTween.moveLocal(Obj_Short, new Vector3(OnS_Short.x, OnS_Short.y, 0), .55f).setEase(LeanTweenType.easeInOutCubic);
         }
         SwipeGuideCanvas.SetActive(true);
+    }
+
+    public void ShowRespawnButton(){
+        
+        LeanTween.moveLocal(respawnButton.gameElement, new Vector3(respawnButton.OnScreenLocation.x, respawnButton.OnScreenLocation.y, 0), .55f).setEase(LeanTweenType.easeInOutCubic);
+    }
+    public void HideRespawnButton(){
+        
+        LeanTween.moveLocal(respawnButton.gameElement, new Vector3(respawnButton.OffScreenLocation.x, respawnButton.OffScreenLocation.y, 0), .5f).setEase(LeanTweenType.easeInOutCubic);
     }
 
 

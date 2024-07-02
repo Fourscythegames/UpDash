@@ -25,6 +25,9 @@ public class NewSpawnPoint : MonoBehaviour
             
             this.GetComponent<SpriteRenderer> ().color = new Color(c1,c2,c3,c4);
             LivePlayerStats.livePlayerStats.playerSpawnPoint = this.gameObject;
+            if(transform.position.y > LivePlayerStats.livePlayerStats.highestSpawnPoint.transform.position.y){
+                LivePlayerStats.livePlayerStats.highestSpawnPoint = this.gameObject;
+            }
             once = true;
         }
     }
